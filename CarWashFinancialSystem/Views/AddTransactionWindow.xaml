@@ -1,0 +1,74 @@
+﻿<Window x:Class="CarWashFinancialSystem.Views.AddTransactionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Добавить транзакцию" Height="550" Width="400"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#121212">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Новая транзакция" 
+                   Foreground="White" FontSize="18" FontWeight="Bold" Margin="0,0,0,20"/>
+
+        <!-- Услуга -->
+        <TextBlock Grid.Row="1" Text="Услуга:" Foreground="#B3B3B3" Margin="0,0,0,5"/>
+        <ComboBox Grid.Row="2" x:Name="ServiceComboBox" Height="30" 
+                  Background="#2D2D2D" Foreground="#2D2D2D" BorderBrush="#404040"
+                  DisplayMemberPath="Name" Margin="0,0,0,15"/>
+
+        <!-- Тип автомобиля -->
+        <TextBlock Grid.Row="3" Text="Тип автомобиля:" Foreground="#B3B3B3" Margin="0,0,0,5"/>
+        <ComboBox Grid.Row="4" x:Name="CarTypeComboBox" Height="30" 
+                  Background="#2D2D2D" Foreground="#2D2D2D" BorderBrush="#404040" Margin="0,0,0,15">
+            <ComboBoxItem Content="Легковой"/>
+            <ComboBoxItem Content="Внедорожник"/>
+            <ComboBoxItem Content="Минивэн"/>
+            <ComboBoxItem Content="Коммерческий"/>
+            <ComboBoxItem Content="Мотоцикл"/>
+        </ComboBox>
+
+        <!-- Госномер -->
+        <TextBlock Grid.Row="5" Text="Госномер:" Foreground="#B3B3B3" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="6" x:Name="LicensePlateTextBox" Height="30" 
+                 Background="#2D2D2D" Foreground="White" BorderBrush="#404040" Margin="0,0,0,15"/>
+
+        <!-- Способ оплаты -->
+        <TextBlock Grid.Row="7" Text="Способ оплаты:" Foreground="#B3B3B3" Margin="0,0,0,5"/>
+        <ComboBox Grid.Row="8" x:Name="PaymentMethodComboBox" Height="30" 
+                  Background="#2D2D2D" Foreground="#2D2D2D" BorderBrush="#404040" Margin="0,0,0,20">
+            <ComboBoxItem Content="Наличные"/>
+            <ComboBoxItem Content="Карта"/>
+            <ComboBoxItem Content="Перевод"/>
+        </ComboBox>
+
+        <!-- Примечания -->
+        <TextBlock Grid.Row="9" Text="Примечания:" Foreground="#B3B3B3" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="10" x:Name="NotesTextBox" Height="60" 
+                 Background="#2D2D2D" Foreground="White" BorderBrush="#404040" 
+                 TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,20"/>
+
+        <!-- Кнопки -->
+        <StackPanel Grid.Row="11" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Отмена" Background="Transparent" Foreground="#B3B3B3" 
+                    Padding="15,8" Click="CancelButton_Click"/>
+            <Button Content="Добавить" Background="#7E57C2" Foreground="Black" 
+                    Padding="15,8" Margin="10,0,0,0" FontWeight="Bold"
+                    Click="AddButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

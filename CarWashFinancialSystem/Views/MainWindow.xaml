@@ -1,0 +1,89 @@
+﻿<Window x:Class="CarWashFinancialSystem.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CarWash Pro - Финансовая система" Height="768" Width="1366"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource BackgroundDarkBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Modern Header -->
+        <Border Grid.Row="0" Background="{StaticResource SurfaceDarkBrush}" Padding="20,15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Logo -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock Text="🚗" FontSize="20" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBlock Text="CarWash Pro" Foreground="{StaticResource TextPrimaryBrush}" 
+                               FontSize="18" FontWeight="Bold" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Title -->
+                <TextBlock Grid.Column="1" Text="Система управления финансами автомойки" 
+                           Foreground="{StaticResource TextSecondaryBrush}" FontSize="14"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                <!-- User Info -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <Border Background="{StaticResource PrimaryBrush}" CornerRadius="12" Padding="8">
+                        <TextBlock x:Name="UserNameText" Foreground="White" FontWeight="SemiBold" FontSize="12"/>
+                    </Border>
+                    <Button Content="🚪" ToolTip="Выход" 
+                            Background="Transparent" Foreground="{StaticResource TextSecondaryBrush}"
+                            BorderThickness="0" Padding="8" Margin="10,0,0,0"
+                            Click="LogoutButton_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Main Content -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Modern Navigation -->
+            <Border Grid.Column="0" Background="{StaticResource SurfaceDarkBrush}" BorderBrush="#404040" BorderThickness="0,0,1,0">
+                <ScrollViewer>
+                    <StackPanel Margin="10">
+                        <TextBlock Text="ГЛАВНОЕ МЕНЮ" Style="{StaticResource ModernBodyText}" 
+                                   Margin="15,20,15,10" FontSize="11" Opacity="0.6"/>
+
+                        <Button x:Name="DashboardBtn" Content="📊 Аналитика" 
+                                Style="{StaticResource ModernNavButtonStyle}" Click="DashboardBtn_Click"/>
+                        <Button x:Name="ServicesBtn" Content="⚙️ Услуги" 
+                                Style="{StaticResource ModernNavButtonStyle}" Click="ServicesBtn_Click"/>
+                        <Button x:Name="TransactionsBtn" Content="💳 Транзакции" 
+                                Style="{StaticResource ModernNavButtonStyle}" Click="TransactionsBtn_Click"/>
+                        <Button x:Name="ExpensesBtn" Content="💸 Расходы" 
+                                Style="{StaticResource ModernNavButtonStyle}" Click="ExpensesBtn_Click"/>
+                        <Button x:Name="ReportsBtn" Content="📈 Отчёты" 
+                                Style="{StaticResource ModernNavButtonStyle}" Click="ReportsBtn_Click"/>
+                        
+
+                        <TextBlock Text="АДМИНИСТРИРОВАНИЕ" Style="{StaticResource ModernBodyText}" 
+                                   Margin="15,30,15,10" FontSize="11" Opacity="0.6"/>
+
+                        <Button x:Name="UsersBtn" Content="👥 Персонал" 
+                                Style="{StaticResource ModernNavButtonStyle}" Click="UsersBtn_Click"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+
+            <!-- Content Area -->
+            <Border Grid.Column="1" Background="{StaticResource BackgroundDarkBrush}" Padding="20">
+                <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Background="Transparent"/>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
