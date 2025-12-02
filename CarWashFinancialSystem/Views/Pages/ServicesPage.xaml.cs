@@ -69,6 +69,7 @@ namespace CarWashFinancialSystem.Views.Pages
                 string.IsNullOrWhiteSpace(ServicePriceTextBox.Text) ||
                 string.IsNullOrWhiteSpace(ServiceDurationTextBox.Text))
             {
+                App.Logger.LogWarning("Попытка добавить услугу с пустыми полями", component: "Система услуг");
                 MessageBox.Show("Заполните все обязательные поля");
                 return;
             }
@@ -90,6 +91,7 @@ namespace CarWashFinancialSystem.Views.Pages
 
             if (success)
             {
+                App.Logger.LogInfo($"Услуга добавлена: {ServiceNameTextBox.Text} - {price} руб", component: "Система услуг");
                 MessageBox.Show("Услуга успешно обновлена");
                 LoadServices();
                 ClearForm();
@@ -98,6 +100,7 @@ namespace CarWashFinancialSystem.Views.Pages
             }
             else
             {
+                App.Logger.LogError($"Не удалось добавить услугу: {ServiceNameTextBox.Text}", component: "Система услуг");
                 MessageBox.Show("Ошибка при обновлении услуги");
             }
         }
@@ -115,11 +118,13 @@ namespace CarWashFinancialSystem.Views.Pages
                     bool success = _serviceService.DeleteService(serviceId);
                     if (success)
                     {
+                        App.Logger.LogInfo($"Услуга удалена: ID {serviceId}", component: "Система услуг");
                         MessageBox.Show("Услуга успешно удалена");
                         LoadServices();
                     }
                     else
                     {
+                        App.Logger.LogError($"Не удалось удалить услугу: ID {serviceId}", component: "Система услуг");
                         MessageBox.Show("Ошибка при удалении услуги");
                     }
                 }

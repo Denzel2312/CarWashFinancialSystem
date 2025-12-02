@@ -1,0 +1,73 @@
+2025-11-27 01:59:54 | SYSTEM |  | System | CarWash Financial System started
+2025-11-27 01:59:57 | INFO | admin | UserAction | User action: Login successful
+2025-11-27 02:00:13 | INFO | vanya | UserAction | User action: Login successful
+2025-11-27 02:02:55 | INFO | admin | UserAction | User action: Login successful
+2025-11-27 02:02:57 | INFO | admin | UserAction | User action: Login successful
+2025-11-27 02:20:07 | SYSTEM |  | System | CarWash Financial System stopped
+2025-11-27 02:20:18 | SYSTEM |  | System | CarWash Financial System started
+2025-11-27 02:20:25 | INFO | admin | UserAction | User action: Login successful
+2025-11-27 02:20:25 | INFO |  | TransactionService | Today revenue queried: 75,00 руб
+2025-11-27 02:20:28 | INFO |  | TransactionService | Today revenue queried: 75,00 руб
+2025-11-27 02:20:29 | INFO |  | TransactionService | Today revenue queried: 75,00 руб
+2025-11-27 02:20:31 | INFO |  | TransactionService | Today revenue queried: 75,00 руб
+2025-11-27 02:20:33 | INFO |  | TransactionService | Today revenue queried: 75,00 руб
+2025-11-27 02:20:35 | INFO |  | ReportService | Daily report generated: 01.11.2025 - 27.11.2025
+2025-11-27 02:20:36 | INFO |  | ReportService | Daily report generated: 01.11.2025 - 27.11.2025
+2025-11-27 02:20:38 | INFO |  | TransactionService | Today revenue queried: 75,00 руб
+2025-11-27 02:21:10 | INFO |  | TransactionService | Transaction created: 300,00 руб, Легковой, Наличные
+2025-11-27 02:21:11 | INFO |  | TransactionsPage | New transaction added via dialog
+2025-11-27 02:21:11 | INFO |  | TransactionService | Today revenue queried: 375,00 руб
+2025-11-27 02:21:48 | SYSTEM |  | System | CarWash Financial System stopped
+2025-11-27 12:03:59 | SYSTEM |  | System | CarWash Financial System started
+2025-11-27 12:04:11 | INFO | admin | UserAction | User action: Login successful
+2025-11-27 12:04:12 | INFO |  | TransactionService | Today revenue queried: 375,00 руб
+2025-11-27 12:04:24 | INFO |  | TransactionService | Today revenue queried: 375,00 руб
+2025-11-27 12:04:27 | INFO |  | TransactionService | Today revenue queried: 375,00 руб
+2025-11-27 12:04:29 | INFO |  | ReportService | Daily report generated: 01.11.2025 - 27.11.2025
+2025-11-27 12:04:29 | INFO |  | TransactionService | Today revenue queried: 375,00 руб
+2025-11-27 12:04:34 | INFO |  | TransactionService | Today revenue queried: 375,00 руб
+2025-11-27 12:04:58 | INFO |  | ServicesPage | Service added: Мойка дисков - 30,00 руб
+2025-11-27 12:05:02 | INFO |  | TransactionService | Today revenue queried: 375,00 руб
+2025-11-27 12:05:19 | INFO |  | TransactionService | Today revenue queried: 375,00 руб
+2025-11-27 12:05:44 | INFO |  | ReportService | Daily report generated: 01.11.2025 - 27.11.2025
+2025-11-27 12:05:45 | INFO |  | TransactionService | Today revenue queried: 375,00 руб
+2025-11-27 12:06:05 | INFO |  | TransactionService | Today revenue queried: 375,00 руб
+2025-11-27 12:06:12 | INFO |  | ReportService | Daily report generated: 01.11.2025 - 27.11.2025
+2025-11-27 12:06:16 | INFO |  | ReportService | Daily report generated: 01.11.2025 - 27.11.2025
+2025-11-27 12:06:18 | INFO |  | ReportService | Daily report generated: 01.11.2025 - 27.11.2025
+2025-11-27 12:06:32 | INFO |  | ReportService | Daily report generated: 01.11.2025 - 27.11.2025
+2025-11-27 12:06:41 | INFO |  | ReportService | Daily report generated: 01.11.2025 - 27.11.2025
+2025-11-27 12:07:15 | INFO |  | ReportService | Daily report generated: 01.11.2025 - 27.11.2025
+2025-11-27 12:07:15 | INFO |  | ReportService | Daily report generated: 01.11.2025 - 27.11.2025
+2025-11-27 12:07:26 | INFO |  | ReportService | Daily report generated: 01.11.2025 - 27.11.2025
+2025-11-27 12:13:04 | SYSTEM |  | System | CarWash Financial System stopped
+2025-11-27 12:18:21 | SYSTEM |  | System | CarWash Financial System started
+2025-11-27 12:36:28 | Система |  | System | CarWash Financial System запущено
+2025-11-27 12:36:35 | Информация | admin | Действие пользователя | Действие пользователя: Успешный вход
+2025-11-27 12:36:35 | Информация |  | TransactionService | Запрос сегодняшнего дохода: 105,00 руб
+2025-11-27 12:36:37 | Информация |  | TransactionService | Запрос сегодняшнего дохода: 105,00 руб
+2025-11-27 12:36:38 | Информация |  | TransactionService | Запрос сегодняшнего дохода: 105,00 руб
+2025-11-27 12:36:38 | Информация |  | ReportService | Создан ежедневный отчет: 01.11.2025 - 27.11.2025
+2025-11-27 12:36:40 | Информация |  | ReportService | Создан ежедневный отчет: 01.11.2025 - 27.11.2025
+2025-11-27 12:36:41 | Информация |  | ReportService | Создан ежедневный отчет: 01.11.2025 - 27.11.2025
+2025-11-27 12:36:41 | Информация |  | TransactionService | Запрос сегодняшнего дохода: 105,00 руб
+2025-11-27 12:36:43 | Информация |  | TransactionService | Запрос сегодняшнего дохода: 105,00 руб
+2025-11-27 12:49:42 | Система |  | Система | CarWash Financial System запущено
+2025-11-27 12:49:45 | Информация | admin | Действие пользователя | Действие пользователя: Успешный вход
+2025-11-27 12:49:45 | Информация |  | Сервис транзакций | Запрос сегодняшнего дохода: 105,00 руб
+2025-11-27 12:49:46 | Информация |  | Сервис транзакций | Запрос сегодняшнего дохода: 105,00 руб
+2025-11-27 12:49:47 | Информация |  | Сервис транзакций | Запрос сегодняшнего дохода: 105,00 руб
+2025-11-27 12:49:48 | Информация |  | Система отчётов | Создан ежедневный отчет: 01.11.2025 - 27.11.2025
+2025-11-27 12:49:48 | Информация |  | Система отчётов | Создан ежедневный отчет: 01.11.2025 - 27.11.2025
+2025-11-27 12:49:49 | Информация |  | Система отчётов | Создан ежедневный отчет: 01.11.2025 - 27.11.2025
+2025-11-27 12:56:46 | Предупреждение | admin | Тест | Тест
+2025-11-27 12:57:04 | Ошибка | vanya | Тест | Тест
+2025-11-27 13:46:00 | Система |  | Система | CarWash Financial System запущено
+2025-11-27 13:46:04 | Информация | admin | Действие пользователя | Действие пользователя: Успешный вход
+2025-11-27 13:46:04 | Информация |  | Сервис транзакций | Запрос сегодняшнего дохода: 105,00 руб
+2025-11-27 13:46:06 | Информация |  | Сервис транзакций | Запрос сегодняшнего дохода: 105,00 руб
+2025-11-27 13:46:17 | Информация |  | Сервис транзакций | Запрос сегодняшнего дохода: 105,00 руб
+2025-11-27 13:46:43 | Информация |  | Система отчётов | Создан ежедневный отчет: 01.11.2025 - 27.11.2025
+2025-11-27 13:46:51 | Информация |  | Система отчётов | Создан ежедневный отчет: 01.11.2025 - 27.11.2025
+2025-11-27 13:46:51 | Информация |  | Система отчётов | Создан ежедневный отчет: 01.11.2025 - 27.11.2025
+2025-11-27 13:47:55 | Информация |  | Сервис транзакций | Запрос сегодняшнего дохода: 105,00 руб

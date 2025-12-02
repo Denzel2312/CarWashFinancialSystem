@@ -16,6 +16,19 @@ namespace CarWashFinancialSystem.Data
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=CarWashFinancialDb;Trusted_Connection=True;");
         }
 
+        public override int SaveChanges()
+        {
+            try
+            {
+                return base.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                App.Logger.LogError($"Ошибка сохранения базы данных: {ex.Message}",
+                                   component: "База данных");
+                throw;
+            }
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Создание начального администратора

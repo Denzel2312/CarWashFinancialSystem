@@ -13,9 +13,16 @@ namespace CarWashFinancialSystem.Views
             InitializeComponent();
             CurrentUser = user;
             UserNameText.Text = user.FullName + $" ({user.Role})";
-
-            // Показываем дашборд по умолчанию
-            ShowDashboard();
+            switch (user.Role)
+            {
+                case UserRole.Operator:
+                    MainFrame.Content = new TransactionsPage(); // Оператор сразу видит транзакции
+                    break;
+                case UserRole.Manager:
+                case UserRole.Administrator:
+                    MainFrame.Content = new DashboardPage(); // Менеджер и админ видят аналитику
+                    break;
+            }
         }
 
         private void ShowDashboard()
@@ -25,11 +32,21 @@ namespace CarWashFinancialSystem.Views
 
         private void DashboardBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (CurrentUser.Role != UserRole.Administrator && CurrentUser.Role != UserRole.Manager)
+            {
+                MessageBox.Show("Доступ запрещен. Только менеджеры и администраторы могут просматривать аналитику.");
+                return;
+            }
             MainFrame.Content = new DashboardPage();
         }
 
         private void ServicesBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (CurrentUser.Role != UserRole.Administrator && CurrentUser.Role != UserRole.Manager)
+            {
+                MessageBox.Show("Доступ запрещен. Только менеджеры и администраторы могут просматривать аналитику.");
+                return;
+            }
             MainFrame.Content = new ServicesPage();
         }
 
@@ -40,11 +57,21 @@ namespace CarWashFinancialSystem.Views
 
         private void ExpensesBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (CurrentUser.Role != UserRole.Administrator && CurrentUser.Role != UserRole.Manager)
+            {
+                MessageBox.Show("Доступ запрещен. Только менеджеры и администраторы могут просматривать аналитику.");
+                return;
+            }
             MainFrame.Content = new ExpensesPage();
         }
 
         private void ReportsBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (CurrentUser.Role != UserRole.Administrator && CurrentUser.Role != UserRole.Manager)
+            {
+                MessageBox.Show("Доступ запрещен. Только менеджеры и администраторы могут просматривать аналитику.");
+                return;
+            }
             MainFrame.Content = new ReportsPage();
         }
 
@@ -52,6 +79,11 @@ namespace CarWashFinancialSystem.Views
         {
             // Временно показываем страницу пользователей всем
             // Позже добавим проверку ролей
+            if (CurrentUser.Role != UserRole.Administrator)
+            {
+                MessageBox.Show("Доступ запрещен. Только администраторы могут управлять пользователями.");
+                return;
+            }
             MainFrame.Content = new UsersPage();
         }
 
@@ -60,6 +92,10 @@ namespace CarWashFinancialSystem.Views
             var loginWindow = new LoginWindow();
             loginWindow.Show();
             this.Close();
+        }
+        public void NavigateToReports()
+        {
+            ReportsBtn_Click(null, null);
         }
     }
 }

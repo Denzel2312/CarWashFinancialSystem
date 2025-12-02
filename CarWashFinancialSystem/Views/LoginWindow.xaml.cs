@@ -1,6 +1,7 @@
-﻿using System.Windows;
-using CarWashFinancialSystem.Services;
+﻿using CarWashFinancialSystem.Services;
 using CarWashFinancialSystem.Views;
+using Microsoft.Extensions.Logging;
+using System.Windows;
 
 namespace CarWashFinancialSystem.Views
 {
@@ -21,6 +22,7 @@ namespace CarWashFinancialSystem.Views
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
+                App.Logger.LogWarning("Предоставлены пустые учетные данные", user: username); MessageBox.Show("Введите логин и пароль");
                 MessageBox.Show("Введите логин и пароль");
                 return;
             }
@@ -28,14 +30,17 @@ namespace CarWashFinancialSystem.Views
             var user = _userService.Authenticate(username, password);
             if (user != null)
             {
-                var mainWindow = new MainWindow(user);
+                App.Logger.LogUserAction("Успешный вход", user.Username); var mainWindow = new MainWindow(user);
                 mainWindow.Show();
                 this.Close();
             }
             else
             {
+                App.Logger.LogUserAction("Неудачная попытка входа", username);
                 MessageBox.Show("Неверный логин или пароль");
             }
+
         }
+
     }
 }

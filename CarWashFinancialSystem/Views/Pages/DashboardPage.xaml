@@ -1,120 +1,189 @@
 ﻿<Page x:Class="CarWashFinancialSystem.Views.Pages.DashboardPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="Аналитика"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      Title="Дашборд"
+      Background="#121212"
       Loaded="Page_Loaded">
 
     <ScrollViewer>
-        <StackPanel Margin="0,0,0,20">
+        <StackPanel Margin="20">
             <!-- Header -->
             <StackPanel Margin="0,0,0,25">
                 <TextBlock Text="Финансовая аналитика" Style="{StaticResource ModernHeaderText}"/>
-                <TextBlock Text="Ключевые показатели эффективности бизнеса" Style="{StaticResource ModernBodyText}"/>
+                <TextBlock Text="Обзор ключевых показателей и графики эффективности" Style="{StaticResource ModernBodyText}"/>
             </StackPanel>
 
-            <!-- Период -->
-            <Border Style="{StaticResource ModernCardStyle}" Margin="0,0,0,15">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Отчёт за:" Style="{StaticResource ModernBodyText}" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                    <DatePicker x:Name="ReportDatePicker" SelectedDate="{Binding Mode=OneWay}" Margin="0,0,15,0"/>
-                    <Button Content="🔄 Обновить" Style="{StaticResource ModernActionButtonStyle}" Click="RefreshData_Click"/>
-                </StackPanel>
-            </Border>
-
-            <!-- Основные финансовые показатели -->
-            <TextBlock Text="ОСНОВНЫЕ ПОКАЗАТЕЛИ" Style="{StaticResource ModernBodyText}" 
-                       Margin="0,0,0,10" FontSize="11" Opacity="0.6"/>
-
-            <UniformGrid Columns="3" Margin="0,0,-15,-15">
-                <!-- Доходы -->
-                <Border Style="{StaticResource ModernCardStyle}">
-                    <StackPanel>
-                        <TextBlock Text="💰 ВЫРУЧКА" Style="{StaticResource ModernBodyText}" Margin="0,0,0,8"/>
-                        <TextBlock x:Name="RevenueText" Text="0 ₽" FontSize="24" FontWeight="Bold" Foreground="#4CAF50"/>
-                        <TextBlock Text="общий доход" Style="{StaticResource ModernBodyText}" Opacity="0.7"/>
-                    </StackPanel>
-                </Border>
-
-                <!-- Расходы -->
-                <Border Style="{StaticResource ModernCardStyle}">
-                    <StackPanel>
-                        <TextBlock Text="📉 РАСХОДЫ" Style="{StaticResource ModernBodyText}" Margin="0,0,0,8"/>
-                        <TextBlock x:Name="ExpensesText" Text="0 ₽" FontSize="24" FontWeight="Bold" Foreground="#F44336"/>
-                        <TextBlock Text="общие затраты" Style="{StaticResource ModernBodyText}" Opacity="0.7"/>
-                    </StackPanel>
-                </Border>
-
-                <!-- Прибыль -->
-                <Border Style="{StaticResource ModernCardStyle}">
-                    <StackPanel>
-                        <TextBlock Text="💵 ПРИБЫЛЬ" Style="{StaticResource ModernBodyText}" Margin="0,0,0,8"/>
-                        <TextBlock x:Name="ProfitText" Text="0 ₽" FontSize="24" FontWeight="Bold" Foreground="#FF9800"/>
-                        <TextBlock x:Name="ProfitMarginText" Text="0%" Style="{StaticResource ModernBodyText}" Opacity="0.7"/>
-                    </StackPanel>
-                </Border>
-            </UniformGrid>
-
-            <!-- Детализация расходов -->
-            <TextBlock Text="СТРУКТУРА РАСХОДОВ" Style="{StaticResource ModernBodyText}" 
-                       Margin="0,25,0,10" FontSize="11" Opacity="0.6"/>
-
-            <UniformGrid Columns="4" Margin="0,0,-15,-15">
-                <Border Style="{StaticResource ModernCardStyle}">
-                    <StackPanel>
-                        <TextBlock Text="💧 Вода" Style="{StaticResource ModernBodyText}" Margin="0,0,0,8"/>
-                        <TextBlock x:Name="WaterExpenseText" Text="0 ₽" FontSize="16" FontWeight="Bold" Foreground="#2196F3"/>
-                        <TextBlock x:Name="WaterPerCarText" Text="0 ₽/авто" Style="{StaticResource ModernBodyText}" Opacity="0.7" FontSize="11"/>
-                    </StackPanel>
-                </Border>
-
-                <Border Style="{StaticResource ModernCardStyle}">
-                    <StackPanel>
-                        <TextBlock Text="⚡ Электричество" Style="{StaticResource ModernBodyText}" Margin="0,0,0,8"/>
-                        <TextBlock x:Name="ElectricityExpenseText" Text="0 ₽" FontSize="16" FontWeight="Bold" Foreground="#FFC107"/>
-                        <TextBlock x:Name="ElectricityPerCarText" Text="0 ₽/авто" Style="{StaticResource ModernBodyText}" Opacity="0.7" FontSize="11"/>
-                    </StackPanel>
-                </Border>
-
-                <Border Style="{StaticResource ModernCardStyle}">
-                    <StackPanel>
-                        <TextBlock Text="🔥 Отопление" Style="{StaticResource ModernBodyText}" Margin="0,0,0,8"/>
-                        <TextBlock x:Name="HeatingExpenseText" Text="0 ₽" FontSize="16" FontWeight="Bold" Foreground="#FF5722"/>
-                    </StackPanel>
-                </Border>
-
-                <Border Style="{StaticResource ModernCardStyle}">
-                    <StackPanel>
-                        <TextBlock Text="👥 Зарплаты" Style="{StaticResource ModernBodyText}" Margin="0,0,0,8"/>
-                        <TextBlock x:Name="SalaryExpenseText" Text="0 ₽" FontSize="16" FontWeight="Bold" Foreground="#9C27B0"/>
-                    </StackPanel>
-                </Border>
-            </UniformGrid>
-
-            <!-- Статистика услуг -->
-            <Border Style="{StaticResource ModernCardStyle}" Margin="0,25,0,0">
+            <!-- KPI Cards -->
+            <Border Style="{StaticResource ModernCardStyle}" Margin="0,0,0,20">
                 <StackPanel>
-                    <TextBlock Text="📊 СТАТИСТИКА УСЛУГ" Style="{StaticResource ModernSubheaderText}" Margin="0,0,0,15"/>
+                    <TextBlock Text="Ключевые показатели" Style="{StaticResource ModernSubheaderText}" Margin="0,0,0,15"/>
 
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <StackPanel Grid.Column="0">
-                            <TextBlock Text="Количество услуг:" Style="{StaticResource ModernBodyText}" Margin="0,0,0,5"/>
-                            <TextBlock x:Name="ServicesCountText" Text="0" FontSize="18" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}"/>
+                        <!-- Выручка за сегодня -->
+                        <Border Grid.Column="0" Background="#2D2D2D" Padding="15" Margin="5" CornerRadius="6">
+                            <StackPanel>
+                                <TextBlock Text="Выручка сегодня" Foreground="#B3B3B3" FontSize="12"/>
+                                <TextBlock x:Name="TodayRevenueText" Text="0 руб" Foreground="#4CAF50" FontSize="18" FontWeight="Bold"/>
+                                <TextBlock x:Name="TodayRevenueChange" Text="+0%" Foreground="#4CAF50" FontSize="11"/>
+                            </StackPanel>
+                        </Border>
 
-                            <TextBlock Text="Средний чек:" Style="{StaticResource ModernBodyText}" Margin="0,15,0,5"/>
-                            <TextBlock x:Name="AverageCheckText" Text="0 ₽" FontSize="18" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}"/>
-                        </StackPanel>
+                        <!-- Операций сегодня -->
+                        <Border Grid.Column="1" Background="#2D2D2D" Padding="15" Margin="5" CornerRadius="6">
+                            <StackPanel>
+                                <TextBlock Text="Операций сегодня" Foreground="#B3B3B3" FontSize="12"/>
+                                <TextBlock x:Name="TodayTransactionsText" Text="0" Foreground="#2196F3" FontSize="18" FontWeight="Bold"/>
+                                <TextBlock x:Name="TodayTransactionsChange" Text="+0%" Foreground="#2196F3" FontSize="11"/>
+                            </StackPanel>
+                        </Border>
 
-                        <StackPanel Grid.Column="1">
-                            <TextBlock Text="Популярные услуги:" Style="{StaticResource ModernBodyText}" Margin="0,0,0,5"/>
-                            <TextBlock x:Name="PopularServiceText" Text="-" FontSize="14" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}"/>
-                            <TextBlock x:Name="PopularServiceCountText" Text="" Style="{StaticResource ModernBodyText}" Opacity="0.7"/>
-                        </StackPanel>
+                        <!-- Средний чек -->
+                        <Border Grid.Column="2" Background="#2D2D2D" Padding="15" Margin="5" CornerRadius="6">
+                            <StackPanel>
+                                <TextBlock Text="Средний чек" Foreground="#B3B3B3" FontSize="12"/>
+                                <TextBlock x:Name="AvgCheckText" Text="0 руб" Foreground="#FF9800" FontSize="18" FontWeight="Bold"/>
+                                <TextBlock x:Name="AvgCheckChange" Text="+0%" Foreground="#FF9800" FontSize="11"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Прибыль за месяц -->
+                        <Border Grid.Column="3" Background="#2D2D2D" Padding="15" Margin="5" CornerRadius="6">
+                            <StackPanel>
+                                <TextBlock Text="Прибыль за месяц" Foreground="#B3B3B3" FontSize="12"/>
+                                <TextBlock x:Name="MonthlyProfitText" Text="0 руб" Foreground="#9C27B0" FontSize="18" FontWeight="Bold"/>
+                                <TextBlock x:Name="MonthlyProfitChange" Text="+0%" Foreground="#9C27B0" FontSize="11"/>
+                            </StackPanel>
+                        </Border>
                     </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- Charts Row 1 -->
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- График выручки за 7 дней -->
+                <Border Grid.Column="0" Style="{StaticResource ModernCardStyle}" Margin="0,0,10,0">
+                    <StackPanel>
+                        <TextBlock Text="Выручка за 7 дней" Style="{StaticResource ModernSubheaderText}" Margin="0,0,0,15"/>
+                        <lvc:CartesianChart x:Name="RevenueChart" 
+                                          Series="{Binding RevenueSeries}"
+                                          LegendLocation="None"
+                                          Height="200">
+                            <lvc:CartesianChart.AxisX>
+                                <lvc:Axis Labels="{Binding RevenueLabels}" 
+                                         Foreground="White"
+                                         FontSize="10">
+                                    <lvc:Axis.Separator>
+                                        <lvc:Separator StrokeThickness="0"/>
+                                    </lvc:Axis.Separator>
+                                </lvc:Axis>
+                            </lvc:CartesianChart.AxisX>
+                            <lvc:CartesianChart.AxisY>
+                                <lvc:Axis LabelFormatter="{Binding RevenueFormatter}" 
+                                         Foreground="White"
+                                         FontSize="10">
+                                    <lvc:Axis.Separator>
+                                        <lvc:Separator StrokeThickness="1" Stroke="#404040"/>
+                                    </lvc:Axis.Separator>
+                                </lvc:Axis>
+                            </lvc:CartesianChart.AxisY>
+                        </lvc:CartesianChart>
+                    </StackPanel>
+                </Border>
+
+                <!-- Круговая диаграмма услуг -->
+                <Border Grid.Column="1" Style="{StaticResource ModernCardStyle}" Margin="10,0,0,0">
+                    <StackPanel>
+                        <TextBlock Text="Распределение по услугам" Style="{StaticResource ModernSubheaderText}" Margin="0,0,0,15"/>
+                        <lvc:PieChart x:Name="ServicesPieChart" 
+                                    Series="{Binding ServiceSeries}"
+                                    LegendLocation="Bottom"
+                                    Height="200"
+                                    InnerRadius="50"
+                                    Hoverable="False">
+                            <lvc:PieChart.ChartLegend>
+                                <lvc:DefaultLegend Foreground="White" FontSize="10"/>
+                            </lvc:PieChart.ChartLegend>
+                        </lvc:PieChart>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Charts Row 2 -->
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Доходы vs Расходы -->
+                <Border Grid.Column="0" Style="{StaticResource ModernCardStyle}" Margin="0,0,10,0">
+                    <StackPanel>
+                        <TextBlock Text="Доходы vs Расходы (30 дней)" Style="{StaticResource ModernSubheaderText}" Margin="0,0,0,15"/>
+                        <lvc:CartesianChart x:Name="RevenueVsExpensesChart" 
+                          Series="{Binding RevenueVsExpensesSeries}"
+                          LegendLocation="Top"
+                          Height="200">
+                            <lvc:CartesianChart.AxisX>
+                                <lvc:Axis Labels="{Binding RevenueVsExpensesLabels}" 
+                         Foreground="White"
+                         FontSize="10">
+                                    <lvc:Axis.Separator>
+                                        <lvc:Separator StrokeThickness="0"/>
+                                    </lvc:Axis.Separator>
+                                </lvc:Axis>
+                            </lvc:CartesianChart.AxisX>
+                            <lvc:CartesianChart.AxisY>
+                                <lvc:Axis LabelFormatter="{Binding AmountFormatter}" 
+                         Foreground="White"
+                         FontSize="10">
+                                    <lvc:Axis.Separator>
+                                        <lvc:Separator StrokeThickness="1" Stroke="#404040"/>
+                                    </lvc:Axis.Separator>
+                                </lvc:Axis>
+                            </lvc:CartesianChart.AxisY>
+                        </lvc:CartesianChart>
+                    </StackPanel>
+                </Border>
+                <!-- Способы оплаты -->
+                <Border Grid.Column="1" Style="{StaticResource ModernCardStyle}" Margin="10,0,0,0">
+                    <StackPanel>
+                        <TextBlock Text="Способы оплаты" Style="{StaticResource ModernSubheaderText}" Margin="0,0,0,15"/>
+                        <lvc:PieChart x:Name="PaymentMethodsChart" 
+                                    Series="{Binding PaymentMethodsSeries}"
+                                    LegendLocation="Bottom"
+                                    Height="200"
+                                    InnerRadius="50">
+                            <lvc:PieChart.ChartLegend>
+                                <lvc:DefaultLegend Foreground="White" FontSize="10"/>
+                            </lvc:PieChart.ChartLegend>
+                        </lvc:PieChart>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Quick Actions -->
+            <Border Style="{StaticResource ModernCardStyle}">
+                <StackPanel>
+                    <TextBlock Text="Быстрые действия" Style="{StaticResource ModernSubheaderText}" Margin="0,0,0,15"/>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="➕ Новая транзакция" Style="{StaticResource ModernActionButtonStyle}" Click="AddTransaction_Click"/>
+                        <Button Content="📈 Детальный отчет" Style="{StaticResource ModernActionButtonStyle}" Click="DetailedReport_Click" Margin="10,0,0,0"/>
+                        <Button Content="🔄 Обновить данные" Style="{StaticResource ModernActionButtonStyle}" Click="RefreshData_Click" Margin="10,0,0,0"/>
+                    </StackPanel>
                 </StackPanel>
             </Border>
         </StackPanel>

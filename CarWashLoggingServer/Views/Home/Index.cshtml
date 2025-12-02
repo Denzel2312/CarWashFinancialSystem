@@ -1,0 +1,89 @@
+@model List<CarWashLoggingServer.Models.LogEntry>
+@{
+    ViewData["Title"] = "CarWash Logs";
+}
+
+<style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+    .container { max-width: 1200px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; }
+    .log-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    .log-table th, .log-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    .log-table th { background: #007cba; color: white; }
+    .log-table tr:nth-child(even) { background: #f9f9f9; }
+    .log-table tr:hover { background: #f0f0f0; }
+    .level-info { color: #28a745; }
+    .level-warn { color: #ffc107; }
+    .level-error { color: #dc3545; font-weight: bold; }
+    .filters { background: #e9ecef; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+    .stats { background: #d4edda; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+</style>
+
+<div class="container">
+    <h1>🚗 CarWash Системные Логи</h1>
+
+    <!-- Статистика -->
+    <div class="stats">
+        <strong>Статистика:</strong>
+        Всего: @ViewBag.Stats.TotalLogs | 
+        Сегодня: @ViewBag.Stats.TodayLogs | 
+        Ошибки: @ViewBag.Stats.Errors | 
+        Предупреждения: @ViewBag.Stats.Warnings |
+        Пользователи: @ViewBag.Stats.UniqueUsers
+       @*  <a href="/Home/Stats" style="margin-left: 20px;">📊 Detailed Stats</a> *@
+        <a href="/Home/Add" style="margin-left: 20px;">➕ Добавить лог</a>
+    </div>
+
+    <!-- Фильтры -->
+<div class="filters">
+    <form method="get">
+        <!-- существующие фильтры -->
+        <label>Вид</label>
+        <select name="level">
+            <option value="">Все</option>
+            <option value="Информация" selected=@(ViewBag.SelectedLevel == "Информация")>Информация</option>
+            <option value="Предупреждение" selected=@(ViewBag.SelectedLevel == "Предупреждение")>Предупреждение</option>
+            <option value="Ошибки" selected=@(ViewBag.SelectedLevel == "Ошибка")>Ошибка</option>
+        </select>
+
+        <label style="margin-left: 20px;">Пользователь:</label>
+        <input type="text" name="user" value="@ViewBag.SelectedUser" placeholder="Фильтр по пользователям" />
+
+        <button type="submit" style="margin-left: 20px;">Фильтр</button>
+        <a href="/" style="margin-left: 10px;">Очистить</a>
+        
+        <!-- Кнопка обновления -->
+        <button type="button" onclick="location.reload()" style="margin-left: 20px; background: #28a745; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">
+            🔄 Обновить
+        </button>
+    </form>
+</div>
+    <!-- Таблица логов -->
+    <table class="log-table">
+        <thead>
+            <tr>
+                <th>Время</th>
+                <th>Вид</th>
+                <th>Пользователь</th>
+                <th>Компонент</th>
+                <th>Сообщение</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var log in Model)
+            {
+                <tr>
+                    <td>@log.Timestamp.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                    <td class="level-@log.Level.ToLower()">@log.Level</td>
+                    <td>@log.User</td>
+                    <td>@log.Component</td>
+                    <td>@log.Message</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (!Model.Any())
+    {
+        <p style="text-align: center; color: #666; margin-top: 40px;">Логи не найдены</p>
+    }
+</div>

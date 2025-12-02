@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "Добавить лог";
+}
+
+<div class="container">
+    <h1>➕ Добавить лог</h1>
+    <a href="/">← Назад к логам</a>
+
+    @if (TempData["Message"] != null)
+    {
+        <div style="color: green; margin: 10px 0;">@TempData["Message"]</div>
+    }
+
+    <form method="post" style="margin-top: 20px;">
+        <div style="margin-bottom: 10px;">
+            <label>Сообщение:</label><br>
+            <textarea name="message" rows="3" style="width: 300px;" required></textarea>
+        </div>
+
+        <div style="margin-bottom: 10px;">
+            <label>Вид:</label><br>
+            <select name="level">
+                <option value="Информация">Информация</option>
+                <option value="Предупреждение">Предупреждение</option>
+                <option value="Ошибка">Ошибки</option>
+            </select>
+        </div>
+
+        <div style="margin-bottom: 10px;">
+            <label>Пользователь:</label><br>
+            <input type="text" name="user" style="width: 200px;" />
+        </div>
+
+        <div style="margin-bottom: 10px;">
+            <label>Компонент:</label><br>
+            <input type="text" name="component" style="width: 200px;" />
+        </div>
+
+        <button type="submit">Добавить лог</button>
+    </form>
+</div>

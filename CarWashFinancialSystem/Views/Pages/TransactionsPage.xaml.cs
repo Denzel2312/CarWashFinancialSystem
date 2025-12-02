@@ -37,6 +37,7 @@ namespace CarWashFinancialSystem.Views.Pages
             var addTransactionWindow = new AddTransactionWindow();
             addTransactionWindow.TransactionAdded += (s, args) =>
             {
+                App.Logger.LogInfo("Новая транзакция добавлена ​​через диалог", component: "Система транзакций");
                 LoadTransactions();
                 UpdateStats();
             };

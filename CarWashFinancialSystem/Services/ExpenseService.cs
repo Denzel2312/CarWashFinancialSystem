@@ -39,10 +39,12 @@ namespace CarWashFinancialSystem.Services
             {
                 _context.Expenses.Add(expense);
                 _context.SaveChanges();
+                App.Logger.LogInfo($"Расход добавлен: {expense} руб", component: "Система расходов");
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                App.Logger.LogError($"Не удалось добавить расходы: {ex.Message}", component: "Система расходов");
                 return false;
             }
         }
@@ -71,10 +73,12 @@ namespace CarWashFinancialSystem.Services
                     _context.Expenses.Remove(expense);
                     _context.SaveChanges();
                 }
+                App.Logger.LogInfo($"Расход удален: {expense.Category} - {expense.Amount} руб", component: "Система расходов");
                 return true;
             }
             catch
             {
+                App.Logger.LogWarning($"Расход не найден для удаления: {id}", component: "Система расходов");
                 return false;
             }
         }

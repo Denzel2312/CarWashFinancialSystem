@@ -2,10 +2,15 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:CarWashFinancialSystem"
+             xmlns:converters="clr-namespace:CarWashFinancialSystem.Converters"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              StartupUri="Views/LoginWindow.xaml">
     <Application.Resources>
         <!-- Converters -->
         <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <converters:BoolToStatusConverter x:Key="BoolToStatusConverter"/>
+        <converters:BoolToColorConverter x:Key="BoolToColorConverter"/>
+        <converters:RoleToVisibilityConverter x:Key="RoleToVisibilityConverter"/>
 
         <!-- Color Palette -->
         <Color x:Key="PrimaryColor">#7E57C2</Color>
@@ -91,6 +96,7 @@
         <Style x:Key="ModernBodyText" TargetType="TextBlock">
             <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}"/>
             <Setter Property="FontSize" Value="14"/>
-        </Style>    
+        </Style>
+
     </Application.Resources>
 </Application>

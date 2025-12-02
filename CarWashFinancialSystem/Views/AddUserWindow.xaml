@@ -1,0 +1,65 @@
+﻿<Window x:Class="CarWashFinancialSystem.Views.AddUserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Добавить пользователя" Height="450" Width="400"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#121212">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" x:Name="WindowTitleText" Text="Добавить пользователя" 
+                   Foreground="White" FontSize="18" FontWeight="Bold" Margin="0,0,0,20"/>
+
+        <!-- Логин -->
+        <TextBlock Grid.Row="1" Text="Логин:" Foreground="#B3B3B3" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="2" x:Name="UsernameTextBox" Height="30" 
+                 Background="#2D2D2D" Foreground="White" BorderBrush="#404040" Margin="0,0,0,15"/>
+
+        <!-- Пароль (только при создании) -->
+        <TextBlock Grid.Row="3" x:Name="PasswordLabel" Text="Пароль:" Foreground="#B3B3B3" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="4" x:Name="PasswordTextBox" Height="30" 
+                 Background="#2D2D2D" Foreground="White" BorderBrush="#404040" Margin="0,0,0,15"/>
+
+        <!-- ФИО -->
+        <TextBlock Grid.Row="5" Text="ФИО:" Foreground="#B3B3B3" Margin="0,0,0,5"/>
+        <TextBox Grid.Row="6" x:Name="FullNameTextBox" Height="30" 
+                 Background="#2D2D2D" Foreground="White" BorderBrush="#404040" Margin="0,0,0,15"/>
+
+        <!-- Роль -->
+        <TextBlock Grid.Row="7" Text="Роль:" Foreground="#B3B3B3" Margin="0,0,0,5"/>
+        <ComboBox Grid.Row="8" x:Name="RoleComboBox" Height="30" 
+                  Background="#2D2D2D" Foreground="#2D2D2D" BorderBrush="#404040" Margin="0,0,0,20">
+            <ComboBoxItem Content="Администратор" Tag="Administrator"/>
+            <ComboBoxItem Content="Менеджер" Tag="Manager"/>
+            <ComboBoxItem Content="Оператор" Tag="Operator"/>
+        </ComboBox>
+
+        <!-- Статус (только при редактировании) -->
+        <CheckBox Grid.Row="9" x:Name="IsActiveCheckBox" Content="Активный пользователь" 
+                  Foreground="#B3B3B3" Margin="0,0,0,20" IsChecked="True"/>
+
+        <!-- Кнопки -->
+        <StackPanel Grid.Row="10" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Отмена" Background="Transparent" Foreground="#B3B3B3" 
+                    Padding="15,8" Click="CancelButton_Click"/>
+            <Button Content="Сохранить" Background="#7E57C2" Foreground="Black" 
+                    Padding="15,8" Margin="10,0,0,0" FontWeight="Bold"
+                    Click="SaveButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

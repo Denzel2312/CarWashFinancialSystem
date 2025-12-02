@@ -56,7 +56,7 @@
                                                                Foreground="{StaticResource TextSecondaryBrush}" FontSize="11"/>
                                                     <TextBlock Text=" • " Foreground="{StaticResource TextSecondaryBrush}" FontSize="11"/>
                                                     <TextBlock Text="{Binding Amount}" Foreground="#F44336" FontSize="11" FontWeight="SemiBold"/>
-                                                    <TextBlock Text=" ₽" Foreground="#F44336" FontSize="11" FontWeight="SemiBold"/>
+                                                    <TextBlock Text=" руб" Foreground="#F44336" FontSize="11" FontWeight="SemiBold"/>
                                                 </StackPanel>
                                             </StackPanel>
 
@@ -111,7 +111,7 @@
                                  Padding="10"
                                  FontSize="13"/>
 
-                        <TextBlock Text="Сумма (₽)" Style="{StaticResource ModernBodyText}" Margin="0,15,0,5"/>
+                        <TextBlock Text="Сумма (руб)" Style="{StaticResource ModernBodyText}" Margin="0,15,0,5"/>
                         <TextBox x:Name="AmountTextBox" 
                                  Background="#3A3A3A" 
                                  Foreground="{StaticResource TextPrimaryBrush}"

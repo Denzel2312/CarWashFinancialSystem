@@ -44,11 +44,12 @@ namespace CarWashFinancialSystem.Services
 
                 _context.Transactions.Add(transaction);
                 _context.SaveChanges();
+                App.Logger.LogInfo($"Транзакция создана: {amount} руб, {carType}, {paymentMethod}", component: "Сервис транзакций");
                 return true;
             }
             catch (Exception ex)
             {
-                // В реальном приложении логировать ошибку
+                App.Logger.LogError($"Не удалось создать транзакцию: {ex.Message}", component: "Сервис транзакций");
                 return false;
             }
         }
@@ -65,6 +66,7 @@ namespace CarWashFinancialSystem.Services
         public decimal GetTodayRevenue()
         {
             var today = DateTime.Today;
+            App.Logger.LogInfo($"Запрос сегодняшнего дохода: {_context.Transactions.Where(t => t.TransactionDate >= today).Sum(t => t.Amount)} руб",component: "Сервис транзакций");
             return _context.Transactions
                 .Where(t => t.TransactionDate >= today)
                 .Sum(t => t.Amount);
